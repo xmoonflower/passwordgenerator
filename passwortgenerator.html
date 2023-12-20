@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passwortgenerator</title>
+</head>
+<body>
+    <h2>Passwortgenerator</h2>
+    <h4><i>erstelle ein zufälliges Passwort</i></h4>
+
+    <input type="text" id="passwordout" ><button id="passwordcopy"><b>kopieren</b></button><p>
+
+    <label><b>Passwortlänge von 7 bis 17</b></label><p>
+    <input type="range"><p>
+
+    <label><b>beinhaltet Nummern</b></label>
+    <input type="checkbox" checked><p>
+
+    <label><b>beinhaltet Sonderzeichen</b></label>
+    <input type="checkbox" checked><p>
+    <button id="passwordgen"><b>Generiere ein Passwort</b></button>
+    
+    <style>
+    body  {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: cadetblue;
+        width: 40%;
+        height: 22rem;
+        border-radius: 5rem;
+        border: 5px solid;
+        text-align: center;
+    }
+    button {
+        color: cadetblue;
+    }
+    </style>
+    <script>
+  
+/* Zuweisung */
+const passwordOut = document.querySelector('#passwordout');
+const generateBtn = document.querySelector('#passwordgen');
+const copyBtn = document.querySelector('#passwordcopy');
+//const numbers = document.querySelector('#zahl');
+//const symbols = document.querySelector('#zeichen');
+
+function generatePassword(){
+  
+  /* Passwortlänge */
+  const len = Math.floor(Math.random() * 11 ) + 7 ;
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" + "0123456789" + "!?@%&$";
+  let text = "";
+
+  /* zufällige Charakter Auswahl */
+  for(let i = 0; i < len; i++){
+    text += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  passwordOut.value = text;
+}
+
+function copyPassword(){
+/* Text makieren und kopieren */
+  passwordOut.select();
+  document.execCommand();
+}
+
+generateBtn.addEventListener('click', generatePassword);
+copyBtn.addEventListener('click', copyPassword);
+    </script>
+</body>
+</html>
